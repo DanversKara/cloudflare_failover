@@ -1,0 +1,13 @@
+[Unit]
+Description=Cellular status endpoint for the failover-notice Worker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 -m http.server 8899 --directory /opt/cellular-status --bind 0.0.0.0
+Restart=always
+RestartSec=5
+User=nobody
+
+[Install]
+WantedBy=multi-user.target
